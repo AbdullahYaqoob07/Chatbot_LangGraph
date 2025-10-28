@@ -75,7 +75,11 @@ graph.add_edge("tool_node", "chat_node")
 chatbot= graph.compile(checkpointer=checkpointer)
 
 def retrive_all_threads():
-    all_threads=set()
-    for checkpoint in checkpointer.list(None):
-        all_threads.add(checkpoint.config['configurable']['thread_id']) # pyright: ignore[reportTypedDictNotRequiredAccess]
+    all_threads = set()
+    # list() now requires a valid config — we can pass an empty dict
+    for checkpoint in checkpointer.list({"configurable": {}}):
+        thread_id = checkpoint.config.get("configurable", {}).get("thread_id")
+        if thread_id:
+            all_threads.add(thread_id)
     return list(all_threads)
+
