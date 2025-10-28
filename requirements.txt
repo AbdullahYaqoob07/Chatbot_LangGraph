@@ -4,5 +4,4 @@ langchain
 langchain-openai
 langchain-community
 langgraph
-sqlite3-binary
 duckduckgo-search
