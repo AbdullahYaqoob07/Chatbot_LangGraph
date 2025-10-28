@@ -3,5 +3,5 @@ python-dotenv
 langchain
 langchain-openai
 langchain-community
-langgraph
+langgraph==0.0.56
 duckduckgo-search
